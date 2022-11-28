@@ -1,0 +1,54 @@
+<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ViewModels="clr-namespace:ListBoxMVVM.ViewModels" 
+        x:Class="ListBoxMVVM.MainWindow"
+        Title="ListBox-Binding MVVM" Height="250" Width="455">
+    <Window.Resources>
+        <Style x:Key="style1">
+            <Setter Property="FrameworkElement.Margin" Value="10, 0, 20, 0" />
+            <Setter Property="Control.Foreground" Value="White" />
+            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="#FF606079" Offset="0" />
+            <GradientStop Color="WhiteSmoke" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.DataContext>
+        <ViewModels:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listBoxPerson" Margin="10" DisplayMemberPath="Name" ItemsSource="{Binding PersonsList}" SelectedItem="{Binding CurrentPerson}"/>
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Style="{StaticResource style1}" Content="Name:"/>
+            <Label Style="{StaticResource style1}" Grid.Row="1" Content="Alter:"/>
+            <Label Style="{StaticResource style1}" Grid.Row="2" Content="Adresse:"/>
+            <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="0" Margin="3" Text="{Binding EditPerson.Name}"/>
+            <TextBox x:Name="Alter" Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding EditPerson.Alter}" />
+            <TextBox x:Name="Adresse" Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding EditPerson.Adresse}"/>
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="3">
+                <Button x:Name="btnUpdate" Height="20" Content="_Aendern" Margin="3" Command="{Binding CmdUpdate}"/>
+                <Button x:Name="btnInsert" Height="20" Content="_Einfuegen" Margin="3" Command="{Binding CmdInsert}"/>
+                <Button x:Name="btnDelete" Height="20" Content="_Loeschen"  Margin="3" Command="{Binding CmdDelete}"/>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>
