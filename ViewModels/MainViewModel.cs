@@ -19,9 +19,10 @@ namespace ListBoxMVVM.ViewModels
         {
             _personList = new ObservableCollection<PersonModel>(PersonMocking.GetPersons());
 
-            CmdInsert = new RelayCommand(param => Execute_Insert(), param => CanExecute_Insert());
-            CmdUpdate = new RelayCommand(param => Execute_Update(), param => CanExecute_Update());
-            CmdDelete = new RelayCommand(param => Execute_Delete(), param => CanExecute_Delete());
+            // TODO: Command Bindings instanziieren
+            // CmdInsert = new RelayCommand ...
+            // CmdUpdate = new RelayCommand ...
+            // CmdDelete = new RelayCommand ...
         }
 
         public PersonModel CurrentPerson
@@ -31,8 +32,7 @@ namespace ListBoxMVVM.ViewModels
             {
                 if (value != _currentPerson)
                 {
-                    SetProperty<PersonModel>(ref _currentPerson, value);
-                    EditPerson = _currentPerson;
+                    // TODO: SetProperty
                 }
             }
         }
